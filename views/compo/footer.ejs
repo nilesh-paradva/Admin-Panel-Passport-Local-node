@@ -14,7 +14,7 @@
         const days = Math.floor(hours / 24);
         return `${days} days ago`;
     }
-    
+
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelectorAll(".time-ago").forEach(function (element) {
             const time = element.getAttribute("data-time");
@@ -30,5 +30,12 @@
             };
             reader.readAsDataURL(file);
         }
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl);
+        });
     });
 </script>

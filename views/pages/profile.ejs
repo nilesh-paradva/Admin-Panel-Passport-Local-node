@@ -121,19 +121,21 @@
             <div class="modal-body">
 				<div class="container">
 					<div class="row">
-						<div class="col-12">
-							<form action="/profileImg/<%= user._id %>" method="post" enctype="multipart/form-data" class="d-flex align-items-center justify-content-between w-100">
-								<div class="img-dis d-flex align-items-center">
-									<div class="profile-picture-container" style="position: relative; display: inline-block;">
-										<img src="<%= user.avatar ? user.avatar : './ImgUpload/Profile/profile.webp' %>" class="profile-picture border border-2" alt="Profile Picture" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover;" id="profilePicPreview">
-										<!-- <a href="<%=user.avatar %> ">profileimg</a> -->
+						<div class="col-12 w-100">
+							<form action="/profileImg/<%= user._id %>" method="post" enctype="multipart/form-data" class="w-100">
+								<div class="img-dis w-full d-flex align-items-center justify-content-between flex-column flex-lg-row">
+									<div class="profile-dis d-flex align-items-center justify-content-center">
+										<div class="profile-picture-container" style="position: relative; display: inline-block;">
+											<img src="<%= user.avatar ? user.avatar : './ImgUpload/Profile/profile.webp' %>" class="profile-picture border border-2" alt="Profile Picture" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover;" id="profilePicPreview">
+											<!-- <a href="<%=user.avatar %> ">profileimg</a> -->
+										</div>
+										<div class="dis ps-2">
+											<h4 class="mt-3 mb-0"><%= user && user.username ? user.username : "Nilesh" %></h4>
+											<p class="text-muted m-0 fs-6"><%= user && user.email ? user.email : "Enter your Email" %></p>
+											<span class="<%= user.status == 'Active' ? 'text-success fw-bold' : 'text-danger fw-bold' %>"><%= user.status %></span>
+										</div>
 									</div>
-									<div class="dis ps-5">
-										<h4 class="mt-3 mb-0"><%= user && user.username ? user.username : "Nilesh" %></h4>
-										<p class="text-muted m-0 fs-6"><%= user && user.email ? user.email : "Enter your Email" %></p>
-										<span class="<%= user.status == 'Active' ? 'text-success fw-bold' : 'text-danger fw-bold' %>"><%= user.status %></span>
-									</div>
-									<div class="delete-upload gap-2 ps-5 d-flex align-items-center justify-content-center">
+									<div class="delete-upload gap-2 d-flex align-items-center justify-content-center my-3">
 										<div class="img-upload">
 												<label for="imageUpload" class="m-0 btn btn-primary">
 													<i class="fa-solid fa-camera m-0" for="imageUpload"></i>
@@ -144,9 +146,9 @@
 											<a href="/profileImgDelete/<%= user._id %>" class="btn btn-danger m-0" ><i class="fa-solid fa-trash m-0"></i></a>
 										</div>
 									</div>									
-								</div>
-								<div class="upload-btn">
-									<button class="btn btn-primary" type="submit">Upload Photo</button>
+									<div class="upload-btn w-full">
+										<button class="btn btn-primary" type="submit">Upload&nbsp;Photo</button>
+									</div>
 								</div>
 							</form>
 						</div>
@@ -229,29 +231,26 @@
 									</div>
 								</div>
 								<div class="row gap-3 align-items-center justify-content-center">
-									<div class="col-lg-10 d-flex align-items-center justify-content-between border border-2 py-4 rounded-2  border-primary">
-										<!-- <form action="/profileImg/<%= user._id %>" method="post" enctype="multipart/form-data" class="d-flex align-items-center justify-content-between w-100"> -->
+									<div class="col-lg-10 d-flex align-items-center justify-content-between border flex-column flex-lg-row border-2 py-4 rounded-2  border-primary">
 											<div class="img-dis d-flex align-items-center">
 												<div class="profile-picture-container" style="position: relative; display: inline-block;">
 													<img src="<%= user.avatar ? user.avatar : './ImgUpload/Profile/profile.webp' %>" class="profile-picture border border-2" alt="Profile Picture" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover;" id="profilePicPreview">
-													<!-- <a href="<%=user.avatar %> ">profileimg</a> -->
-													<!-- <label for="imageUpload" class="camera-icon"  style="position: absolute; bottom: 10px; right: 10px; background: #1252b3; padding: 6px 10px; border-radius: 50%; cursor: pointer;"> -->
-														<!-- <i class="feather icon-camera" style="color: white;"></i> -->
-													<!-- </label> -->
-													<!-- <input type="file" id="imageUpload" name="profileImg" style="display: none;"> -->
 												</div>
-												<div class="dis ps-5">
+												<div class="dis ps-2">
 													<h4 class="mt-3 mb-0"><%= user && user.username ? user.username : "Nilesh" %></h4>
 													<p class="text-muted m-0 fs-6"><%= user && user.email ? user.email : "Enter your Email" %></p>
 													<span class="<%= user.status == 'Active' ? 'text-success fw-bold' : 'text-danger fw-bold' %>"><%= user.status %></span>
 												</div>
 											</div>
-											<div class="upload-btn">
-												<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#imgChange"><i class="fa-solid fa-pen-to-square m-0 p-0"></i></button>
-												<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#passChange">Change PassWord</button>
+											<div class="upload-btn d-flex align-items-center justify-content-center flex-column flex-lg-row">
+												<% if(user.status == 'Active'){ %>
+													<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#imgChange" Status><i class="fa-solid fa-pen-to-square m-0 p-0"></i></button>
+													<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#passChange" Status>Change PassWord</button>
+												<% }else{ %>
+													<button class="<%= user.status == 'Active' ? 'btn btn-primary' : 'btn btn-light' %>" data-bs-toggle="tooltip" data-bs-placement="top" title="Go To Edit Profile In status Active"><i class="fa-solid fa-pen-to-square m-0 p-0"></i></button>
+													<button class="<%= user.status == 'Active' ? 'btn btn-primary' : 'btn btn-light' %>" data-bs-toggle="tooltip" data-bs-placement="top" title="Go To Edit Profile In status Active">Change PassWord</button>
+												<% } %>												
 											</div>
-										<!-- </form> -->
-										<!-- <button data-bs-toggle="modal" data-bs-target="#imgChange"><%= user && user.status == 'Active' ? 'Deactivate' : 'Activate' %></button> -->
 									</div>
 									<div class="col-lg-10 d-flex flex-column  justify-content-start border border-2 py-4 rounded-2  border-primary">
 										<h3>Contact Information</h3>
@@ -263,7 +262,6 @@
 												<li><span class="text-black fs-6">Date Of Birth :- </span><%= user && user.dob ? user.dob.toISOString().split('T')[0] : '' %></li>
 												<li><span class="text-black fs-6">Gender :- </span><%= user && user.gender ? user.gender : "male"%></li>
 												<li><span class="text-black fs-6">language :- </span><%= user && user.language ? user.language : "English"%></li>
-												<!-- <li><span class="text-black fs-6">Address :- </span>C/D-541 Sitaram Society</li> -->
 											</ul>
 										</div>
 									</div>
@@ -276,9 +274,6 @@
 												<li><span class="text-black fs-6">Country :- </span><%= user && user.country ? user.country : "Nilesh"%></li>
 												<li><span class="text-black fs-6">Postal Code :- </span><%= user && user.postalcode ? user.postalcode : "21342425"%></li>
 												<li><span class="text-black fs-6">Address :- </span><%= user && user.address ? user.address : "C/D-541 Sitaram Society"%></li>
-												<!-- <li><span class="text-black fs-6">email :- </span>nileshparadva97@gmail.com</li>
-												<li><span class="text-black fs-6">Phone Number :- </span>6356384650</li>
-												<li><span class="text-black fs-6">Date Of Birth :- </span>25-11-2003</li> -->
 											</ul>
 										</div>
 									</div>
@@ -345,7 +340,7 @@
 					</div>
 				</div>
 			</div>
-		</div>				
+		</div>
 		<%- include("../compo/footer") -%>
 	</body> 
 </html>
