@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("../compo/head") -%>
+<body>
+
+    <!-- [ Navigation Menu ] Start -->
+    <%- include("../compo/sidebar") -%>
+    <!-- [ Navigation Menu ] End -->
+
+    <!-- [ Header ] Start -->
+    <%- include("../compo/header") -%>
+    <!-- [ Header ] End -->
+
+    <div class="pcoded-main-container">
+        <div class="pcoded-wrapper">
+            <div class="pcoded-content">
+                <div class="pcoded-inner-content">
+                    <div class="container mt-4">
+                        <h1 class="text-center mb-4">View Blog</h1>
+                            <% const sortBlogs = AdminBlog.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) %>
+                            <div class="row g-4">
+                                <% sortBlogs.forEach(blog => { %>
+                                    <div class="col-md-6 col-lg-6">
+                                        <div class="card-box shadow border border-2 border-secondary rounded-2 h-100 d-flex flex-column">
+                                            <div class="card-box-body px-3 py-3 flex-grow-1 d-flex flex-column">
+                                                <div class="mb-3 blog-profile-img-dis d-flex align-items-center justify-content-between">
+                                                    <div class="profile-picture-container d-flex align-items-center">
+                                                        <img src="<%= blog.admin && blog.admin.avatar ? blog.admin.avatar : '/ImgUpload/Profile/profile.webp' %>" class="profile-picture border border-1" alt="Profile Picture" style="width: 70px; aspect-ratio: 1/1; border-radius: 50%; object-fit: cover;">
+                                                        <div class="ps-2">
+                                                            <h4 class="card-title text-primary m-0 text-black"><%= blog.admin.username %></h4>
+                                                            <p class="m-0"><%= new Date(blog.createdAt).toLocaleString('en-US', {
+                                                                weekday: 'long', year: 'numeric', month: 'long', 
+                                                                day: 'numeric', hour: 'numeric', minute: 'numeric', 
+                                                                second: 'numeric', hour12: true
+                                                            }) %></p>
+                                                        </div>
+                                                    </div>
+                                                    <span class="card-title text-primary ps-2 time-ago" data-time="<%= blog.createdAt %>">
+                                                        <%= new Date(blog.createdAt).toLocaleString('en-US') %>
+                                                    </span>
+                                                </div>
+                                                <div class="blog-img-title-des flex-grow-1 d-flex flex-column">
+                                                    <div class="title mb-2"><p class="m-0 p-0 fs-5"><%= blog.title %></p></div>
+                                                    <div class="mb-2 blog-img d-flex align-items-center justify-content-center">
+                                                        <div class="border border-2 p-4 rounded-2">
+                                                            <img src="<%= blog.blogImag ? blog.blogImag : './ImgUpload/Blog/blog.jpg' %>" class="profile-picture img-fluid" alt="Profile Picture" style="width: 450px; aspect-ratio: 1/1; object-fit: cover; border-radius: 8px;">
+                                                        </div>
+                                                    </div>
+                                                    <div class="description"><%- blog.Blogdescription %></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <% }); %>
+                            </div>                            
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Required JS -->
+    <%- include("../compo/footer") -%>
+</body>
+</html>

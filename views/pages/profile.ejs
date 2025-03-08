@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en" >
+<%- include("../compo/head") -%>
+
+<!-- Bootstrap Form Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content rounded-2" style="overflow: hidden;">
+            <div class="modal-header">
+                <h5 class="modal-title">User Registration</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="/profileEdit/<%= user._id %>" method="post">
+					<div class="mb-3">
+						<label for="username" class="form-label text-black">Username</label>
+						<input type="text" class="form-control" id="username" name="username" value="<%= user.username %>">
+					</div>
+					<div class="mb-3">
+						<label for="bio" class="form-label text-black">Bio</label>
+						<input type="text" class="form-control" id="bio" name="bio" value="<%= user.bio %>">
+					</div>
+					<div class="mb-3">
+						<label for="email" class="form-label text-black">Email</label>
+						<input type="email" class="form-control" id="email" name="email" value="<%= user.email %>">
+					</div>
+					<div class="mb-3">
+						<label for="phonenumber" class="form-label text-black">Phone Number</label>
+						<input type="tel" class="form-control" id="phonenumber" name="phonenumber" value="<%= user.phonenumber %>">
+					</div>
+					<div class="mb-3">
+						<label for="address" class="form-label text-black">Address</label>
+						<textarea class="form-control" id="address" name="address"><%= user.address %></textarea>
+					</div>
+					<div class="mb-3">
+						<label for="dob" class="form-label text-black">Date of Birth</label>
+						<input type="date" class="form-control" id="dob" name="dob" value="<%= user && user.dob ? user.dob.toISOString().split('T')[0] : '' %>">
+					</div>
+					<div class="mb-3">
+						<label class="form-label text-black">Gender</label>
+						<select class="form-select" id="gender" name="gender">
+							<option value="">Select</option>
+							<option value="Male" <%= user.gender === "Male" ? "selected" : "" %>>Male</option>
+							<option value="Female" <%= user.gender === "Female" ? "selected" : "" %>>Female</option>
+							<option value="Other" <%= user.gender === "Other" ? "selected" : "" %>>Other</option>
+						</select>
+					</div>
+					<div class="mb-3 d-flex align-items-center justify-content-start gap-3">
+                        <label class="form-label m-0 p-0 text-black">Status :-</label>
+                        <div class="d-flex align-items-center">
+                            <input type="radio" id="active" name="status" value="Active" <%= user.status === "Active" ? "checked" : "" %>>
+                            <label for="active" class="m-0 ps-1">Active</label>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <input type="radio" id="inactive" name="status" value="Inactive" <%= user.status === "Inactive" ? "checked" : "" %>>
+                            <label for="inactive" class="m-0 ps-1">Inactive</label>
+                        </div>
+                    </div>
+					<!-- <div class="mb-3">
+						<label for="OldPass" class="form-label text-black">Old Password :- </label>
+						<input type="text" class="form-control" id="OldPass" name="OldPass">
+					</div>
+					<div class="mb-3">
+						<label for="NewPass" class="form-label text-black">New Password :-</label>
+						<input type="password" class="form-control" id="NewPass" name="NewPass">
+					</div>
+					<div class="mb-3">
+						<label for="ConfPass" class="form-label text-black">Confirm Password :-</label>
+						<input type="password" class="form-control" id="ConfPass" name="ConfPass">
+					</div> -->
+					<div class="mb-3">
+						<label for="language" class="form-label text-black">Language</label>
+						<input type="text" class="form-control" id="language" name="language" value="<%= user.language %>">
+					</div>
+					<div class="mb-3">
+						<label for="postalcode" class="form-label text-black">Postal Code</label>
+						<input type="text" class="form-control" id="postalcode" name="postalcode" value="<%= user.postalcode %>">
+					</div>
+					<div class="mb-3">
+						<label for="city" class="form-label text-black">City</label>
+						<input type="text" class="form-control" id="city" name="city" value="<%= user.city %>">
+					</div>
+					<div class="mb-3">
+						<label for="state" class="form-label text-black">State</label>
+						<input type="text" class="form-control" id="state" name="state" value="<%= user.state %>">
+					</div>
+					<div class="mb-3">
+						<label for="country" class="form-label text-black">Country</label>
+						<input type="text" class="form-control" id="country" name="country" value="<%= user.country %>">
+					</div>
+					<div class="mb-3">
+						<label for="linkedin" class="form-label text-black">Linkedin</label>
+						<input type="text" class="form-control" id="linkedin" name="linkedin" value="<%= user.linkedin %>">
+					</div>
+					<div class="mb-3">
+						<label for="facebook" class="form-label text-black">Facebook</label>
+						<input type="text" class="form-control" id="facebook" name="facebook" value="<%= user.facebook %>">
+					</div>
+					<div class="mb-3">
+						<label for="instagram" class="form-label text-black">Instagram</label>
+						<input type="text" class="form-control" id="instagram" name="instagram" value="<%= user.instagram %>">
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+						<button type="submit" class="btn btn-primary">Update</button>
+					</div>
+				</form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Img Upload -->
+<div class="modal fade" id="imgChange" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content rounded-2" style="overflow: hidden;">
+            <div class="modal-header">
+                <h5 class="modal-title">User Registration</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+				<div class="container">
+					<div class="row">
+						<div class="col-12">
+							<form action="/profileImg/<%= user._id %>" method="post" enctype="multipart/form-data" class="d-flex align-items-center justify-content-between w-100">
+								<div class="img-dis d-flex align-items-center">
+									<div class="profile-picture-container" style="position: relative; display: inline-block;">
+										<img src="<%= user.avatar ? user.avatar : './ImgUpload/Profile/profile.webp' %>" class="profile-picture border border-2" alt="Profile Picture" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover;" id="profilePicPreview">
+										<!-- <a href="<%=user.avatar %> ">profileimg</a> -->
+									</div>
+									<div class="dis ps-5">
+										<h4 class="mt-3 mb-0"><%= user && user.username ? user.username : "Nilesh" %></h4>
+										<p class="text-muted m-0 fs-6"><%= user && user.email ? user.email : "Enter your Email" %></p>
+										<span class="<%= user.status == 'Active' ? 'text-success fw-bold' : 'text-danger fw-bold' %>"><%= user.status %></span>
+									</div>
+									<div class="delete-upload gap-2 ps-5 d-flex align-items-center justify-content-center">
+										<div class="img-upload">
+												<label for="imageUpload" class="m-0 btn btn-primary">
+													<i class="fa-solid fa-camera m-0" for="imageUpload"></i>
+												</label>
+											<input type="file" id="imageUpload" name="profileImg" style="display: none;">
+										</div>
+										<div class="img-delete">
+											<a href="/profileImgDelete/<%= user._id %>" class="btn btn-danger m-0" ><i class="fa-solid fa-trash m-0"></i></a>
+										</div>
+									</div>									
+								</div>
+								<div class="upload-btn">
+									<button class="btn btn-primary" type="submit">Upload Photo</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Change Password -->
+<div class="modal fade" id="passChange" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content rounded-2" style="overflow: hidden;">
+            <div class="modal-header">
+                <h5 class="modal-title">User Registration</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+				<div class="container">
+					<div class="row">
+						<div class="col-12">
+							<form action="/ProfilePassChange/<%= user._id %>" method="post" class="d-flex align-items-center justify-content-between flex-column gap-2 w-100">
+								<div class="mb-3">
+									<label for="OldPass" class="form-label text-black">Old Password :- </label>
+									<input type="text" class="form-control" id="OldPass" name="OldPass">
+								</div>
+								<div class="mb-3">
+									<label for="NewPass" class="form-label text-black">New Password :-</label>
+									<input type="password" class="form-control" id="NewPass" name="NewPass">
+								</div>
+								<div class="mb-3">
+									<label for="ConfPass" class="form-label text-black">Confirm Password :-</label>
+									<input type="password" class="form-control" id="ConfPass" name="ConfPass">
+								</div>
+								<div class="upload-btn">
+									<button class="btn btn-primary" type="submit">Change Password</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+	<body class="bg-gray-100 font-sans">
+		<!-- [ navigation menu ] start -->
+		<%- include("../compo/sidebar") -%>
+		<!-- [ navigation menu ] end -->
+		<!-- [ Header ] start -->
+		<%- include("../compo/header") -%>
+		<!-- [ Header ] end -->
+		<div class="pcoded-main-container">
+			<div class="pcoded-wrapper">
+				<div class="pcoded-content">
+					<div class="pcoded-inner-content">
+						<div class="main-body">
+							<div class="page-wrapper">
+								<div class="page-header">
+									<div class="page-block">
+										<div class="row align-items-center justify-content-center" >
+											<div class="col-md-12 d-flex align-items-center justify-content-between">
+												<div class="page-header-title">
+													<h5 class="m-b-10">Profile Page</h5>
+													<ul class="breadcrumb">
+														<li class="breadcrumb-item"><a href="/" class="text-decoration-none"><i class="feather icon-home"></i></a></li>
+														<li class="breadcrumb-item"><a href="#" class="text-decoration-none">User</a></li>
+														<li class="breadcrumb-item"><a href="#" class="text-decoration-none">Profile</a></li>
+													</ul>
+												</div>
+												<div class="edit-pass">
+													<!-- <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Change PassWord</button> -->
+													<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit Profile</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row gap-3 align-items-center justify-content-center">
+									<div class="col-lg-10 d-flex align-items-center justify-content-between border border-2 py-4 rounded-2  border-primary">
+										<!-- <form action="/profileImg/<%= user._id %>" method="post" enctype="multipart/form-data" class="d-flex align-items-center justify-content-between w-100"> -->
+											<div class="img-dis d-flex align-items-center">
+												<div class="profile-picture-container" style="position: relative; display: inline-block;">
+													<img src="<%= user.avatar ? user.avatar : './ImgUpload/Profile/profile.webp' %>" class="profile-picture border border-2" alt="Profile Picture" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover;" id="profilePicPreview">
+													<!-- <a href="<%=user.avatar %> ">profileimg</a> -->
+													<!-- <label for="imageUpload" class="camera-icon"  style="position: absolute; bottom: 10px; right: 10px; background: #1252b3; padding: 6px 10px; border-radius: 50%; cursor: pointer;"> -->
+														<!-- <i class="feather icon-camera" style="color: white;"></i> -->
+													<!-- </label> -->
+													<!-- <input type="file" id="imageUpload" name="profileImg" style="display: none;"> -->
+												</div>
+												<div class="dis ps-5">
+													<h4 class="mt-3 mb-0"><%= user && user.username ? user.username : "Nilesh" %></h4>
+													<p class="text-muted m-0 fs-6"><%= user && user.email ? user.email : "Enter your Email" %></p>
+													<span class="<%= user.status == 'Active' ? 'text-success fw-bold' : 'text-danger fw-bold' %>"><%= user.status %></span>
+												</div>
+											</div>
+											<div class="upload-btn">
+												<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#imgChange"><i class="fa-solid fa-pen-to-square m-0 p-0"></i></button>
+												<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#passChange">Change PassWord</button>
+											</div>
+										<!-- </form> -->
+										<!-- <button data-bs-toggle="modal" data-bs-target="#imgChange"><%= user && user.status == 'Active' ? 'Deactivate' : 'Activate' %></button> -->
+									</div>
+									<div class="col-lg-10 d-flex flex-column  justify-content-start border border-2 py-4 rounded-2  border-primary">
+										<h3>Contact Information</h3>
+										<div class="dis">
+											<ul>
+												<li><span class="text-black fs-6">Name :- </span><%= user && user.username ? user.username : "Nilesh" %></li>
+												<li><span class="text-black fs-6">Email :- </span><%= user && user.email ? user.email : "johndoe@example.com" %></li>
+												<li><span class="text-black fs-6">Phone Number :- </span><%= user && user.phonenumber ? user.phonenumber : "Phone Number" %></li>
+												<li><span class="text-black fs-6">Date Of Birth :- </span><%= user && user.dob ? user.dob.toISOString().split('T')[0] : '' %></li>
+												<li><span class="text-black fs-6">Gender :- </span><%= user && user.gender ? user.gender : "male"%></li>
+												<li><span class="text-black fs-6">language :- </span><%= user && user.language ? user.language : "English"%></li>
+												<!-- <li><span class="text-black fs-6">Address :- </span>C/D-541 Sitaram Society</li> -->
+											</ul>
+										</div>
+									</div>
+									<div class="col-lg-10 d-flex flex-column  justify-content-start border border-2 py-4 rounded-2  border-primary">
+										<h3>Location</h3>
+										<div class="dis">
+											<ul>
+												<li><span class="text-black fs-6">City :- </span><%= user && user.city ? user.city : "Surat"%></li>
+												<li><span class="text-black fs-6">State :- </span><%= user && user.state ? user.state : "Gujarat"%></li>
+												<li><span class="text-black fs-6">Country :- </span><%= user && user.country ? user.country : "Nilesh"%></li>
+												<li><span class="text-black fs-6">Postal Code :- </span><%= user && user.postalcode ? user.postalcode : "21342425"%></li>
+												<li><span class="text-black fs-6">Address :- </span><%= user && user.address ? user.address : "C/D-541 Sitaram Society"%></li>
+												<!-- <li><span class="text-black fs-6">email :- </span>nileshparadva97@gmail.com</li>
+												<li><span class="text-black fs-6">Phone Number :- </span>6356384650</li>
+												<li><span class="text-black fs-6">Date Of Birth :- </span>25-11-2003</li> -->
+											</ul>
+										</div>
+									</div>
+									<% if (blogUser.length !== 0) { %>
+										<div class="container py-4">
+										  <div class="row justify-content-center">
+											<div class="col-lg-10 d-flex flex-wrap border border-2 py-4 rounded-2 border-primary " style="gap: 34px 0px;">
+											  <% const sortBlogs = blogUser.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) %>
+												<% sortBlogs.map((blog) => { %>
+												  <div class="col-6 w-100 d-flex ">
+													<div class="card h-100 shadow border border-2 border-secondary-subtle rounded-2 p-3 w-100">
+													  <div class="d-flex align-items-center justify-content-between mb-3">
+														<div class="d-flex align-items-center justify-content-between flex-column flex-lg-row w-100">
+														<div class="ms-2 text-center text-lg-start d-flex align-items-center flex-column flex-lg-row">
+															<img src="<%= user && user.avatar ? user.avatar : './ImgUpload/profile/profile.webp' %>" class="rounded-circle border border-1" width="50" height="50" style="object-fit: cover;">
+															<div class="dis ps-2">
+																<h5 class="m-0 text-primary"><%= user.username %></h5>
+																<p class="text-muted small m-0"><%= new Date(blog.createdAt).toLocaleString('en-US', {
+																  weekday: 'long', year: 'numeric', month: 'long',
+																  day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true,
+																}) %></p>
+															</div>
+														  </div>
+														  <span class="card-title text-primary ps-2 time-ago" data-time="<%= blog.createdAt %>">
+															  <%= new Date(blog.createdAt).toLocaleString('en-US') %>
+														  </span>
+														  <div class="dropdown">
+															<span class="dropdown-toggle" data-bs-toggle="dropdown" style="cursor: pointer;">
+															  <i class="fa-solid fa-ellipsis-vertical"></i>
+															</span>
+															<ul class="dropdown-menu">
+															  <li><a class="dropdown-item " href="/blogedit/<%=blog._id %>" ><span class="text-primary"><i class="fa-solid fa-pen-to-square"></i></span>Edit Blog</a></li>
+															  <li><a class="dropdown-item " href="/blogs/delete/<%=blog._id %>" ><span class="text-danger"><i class="fa-solid fa-trash"></i></span>Delete Blog</a></li>
+															  <li><a class="dropdown-item " href="#"><span class="text-"><i class="fa-solid fa-eye"></i></span>View Blog</a></li>
+															</ul>
+														  </div>
+														</div>
+													  </div>
+													  <div>
+														<h6 class="fw-bold mb-2 text-center text-lg-start"><%= blog.title %></h6>
+														<div class="blog-img-title-des flex-grow-1 d-flex flex-column">
+															<div class="mb-2 blog-img d-flex align-items-center justify-content-center">
+																<div class="border border-2 p-4 rounded-2">
+																	<img src="<%= blog.blogImag ? blog.blogImag : './ImgUpload/Blog/blog.jpg' %>" class="profile-picture img-fluid" alt="Profile Picture" style="width: 500px; aspect-ratio: 1/1; object-fit: cover; border-radius: 8px;">
+																</div>
+															</div>
+														</div>
+														<div class="dis text-center text-lg-start">
+															<%- blog.Blogdescription %>
+														</div>
+													  </div>
+													</div>
+												  </div>
+												<% }) %>
+											</div>
+										  </div>
+										</div>
+									  <% } else { %>
+										<h4 class="text-center">No Blog Available</h4>
+									  <% } %>									  
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>				
+		<%- include("../compo/footer") -%>
+	</body> 
+</html>
