@@ -44,11 +44,11 @@ The **Blog Post Panel** is a platform where users can register and log in to cre
 
 1. **Clone the Repository** :
    ```bash
-   https://github.com/nilesh-paradva/Admin-panel-passport-local-node-js.git
+   https://github.com/nilesh-paradva/Admin-panel-passport-local-node.git
 
 2. **Navigate into the project folder** :
    ```bash
-   cd Admin-panel-passport-local-node-js
+   cd Admin-panel-passport-local-node
 
 3. **Install the dependencies** :
    ```bash
