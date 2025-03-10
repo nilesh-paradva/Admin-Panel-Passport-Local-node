@@ -130,6 +130,11 @@ strong {
     margin-bottom: 30px;
 }
 
+.dropdown-menu > li.active, .dropdown-menu > li:active, .dropdown-menu > li:focus, .dropdown-menu > li:hover{
+    background-color: rgb(195, 185, 185) !important;
+    color: white !important;
+}
+
 /* ==========  card css start  =========== */
 .anim-rotate {
     -webkit-animation: anim-rotate 1s linear infinite;

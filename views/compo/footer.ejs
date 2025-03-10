@@ -21,6 +21,8 @@
             element.innerText = timeAgo(time);
         });
     });
+
+    //ImgUpload
     document.getElementById('imageUpload').addEventListener('change', function (event) {
         const file = event.target.files[0];
         if (file) {
@@ -32,6 +34,7 @@
         }
     });
 
+    // Tooltip
     document.addEventListener('DOMContentLoaded', function () {
         var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
         var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {

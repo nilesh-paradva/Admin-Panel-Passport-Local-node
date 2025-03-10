@@ -56,18 +56,6 @@
                             <label for="inactive" class="m-0 ps-1">Inactive</label>
                         </div>
                     </div>
-					<!-- <div class="mb-3">
-						<label for="OldPass" class="form-label text-black">Old Password :- </label>
-						<input type="text" class="form-control" id="OldPass" name="OldPass">
-					</div>
-					<div class="mb-3">
-						<label for="NewPass" class="form-label text-black">New Password :-</label>
-						<input type="password" class="form-control" id="NewPass" name="NewPass">
-					</div>
-					<div class="mb-3">
-						<label for="ConfPass" class="form-label text-black">Confirm Password :-</label>
-						<input type="password" class="form-control" id="ConfPass" name="ConfPass">
-					</div> -->
 					<div class="mb-3">
 						<label for="language" class="form-label text-black">Language</label>
 						<input type="text" class="form-control" id="language" name="language" value="<%= user.language %>">
@@ -137,9 +125,7 @@
 									</div>
 									<div class="delete-upload gap-2 d-flex align-items-center justify-content-center my-3">
 										<div class="img-upload">
-												<label for="imageUpload" class="m-0 btn btn-primary">
-													<i class="fa-solid fa-camera m-0" for="imageUpload"></i>
-												</label>
+											<label for="imageUpload" class="m-0 btn btn-primary"><i class="fa-solid fa-camera m-0" for="imageUpload"></i></label>
 											<input type="file" id="imageUpload" name="profileImg" style="display: none;">
 										</div>
 										<div class="img-delete">
@@ -256,12 +242,12 @@
 										<h3>Contact Information</h3>
 										<div class="dis">
 											<ul>
-												<li><span class="text-black fs-6">Name :- </span><%= user && user.username ? user.username : "Nilesh" %></li>
-												<li><span class="text-black fs-6">Email :- </span><%= user && user.email ? user.email : "johndoe@example.com" %></li>
-												<li><span class="text-black fs-6">Phone Number :- </span><%= user && user.phonenumber ? user.phonenumber : "Phone Number" %></li>
-												<li><span class="text-black fs-6">Date Of Birth :- </span><%= user && user.dob ? user.dob.toISOString().split('T')[0] : '' %></li>
-												<li><span class="text-black fs-6">Gender :- </span><%= user && user.gender ? user.gender : "male"%></li>
-												<li><span class="text-black fs-6">language :- </span><%= user && user.language ? user.language : "English"%></li>
+												<li><p class="text-black fs-6 fw-bold m-0">Username :- </span><span class="<%= user.status == 'Active' ? 'text-success fw-semibold' : 'text-dark-emphasis' %> "><%= user && user.username ? user.username : "Nilesh" %></p></li>
+												<li><p class="text-black fs-6 fw-bold m-0">Email :- </span><span class="<%= user.status == 'Active' ? 'text-success fw-semibold' : 'text-dark-emphasis' %> "><%= user && user.email ? user.email : "johndoe@example.com" %></p></li>
+												<li><p class="text-black fs-6 fw-bold m-0">Phone Number :- </span><span class="<%= user.status == 'Active' ? 'text-success fw-semibold' : 'text-dark-emphasis' %> "><%= user && user.phonenumber ? user.phonenumber : "Phone Number" %></p></li>
+												<li><p class="text-black fs-6 fw-bold m-0">Date Of Birth :- </span><span class="<%= user.status == 'Active' ? 'text-success fw-semibold' : 'text-dark-emphasis' %> "><%= user && user.dob ? user.dob.toLocaleDateString('en-GB').replace(/\//g, '-') : '' %></p></li>
+												<li><p class="text-black fs-6 fw-bold m-0">Gender :- </span><span class="<%= user.status == 'Active' ? 'text-success fw-semibold' : 'text-dark-emphasis' %> "><%= user && user.gender ? user.gender : "Gender"%></p></li>
+												<li><p class="text-black fs-6 fw-bold m-0">language :- </span><span class="<%= user.status == 'Active' ? 'text-success fw-semibold' : 'text-dark-emphasis' %> "><%= user && user.language ? user.language : "Language..."%></p></li>
 											</ul>
 										</div>
 									</div>
@@ -269,21 +255,21 @@
 										<h3>Location</h3>
 										<div class="dis">
 											<ul>
-												<li><span class="text-black fs-6">City :- </span><%= user && user.city ? user.city : "Surat"%></li>
-												<li><span class="text-black fs-6">State :- </span><%= user && user.state ? user.state : "Gujarat"%></li>
-												<li><span class="text-black fs-6">Country :- </span><%= user && user.country ? user.country : "Nilesh"%></li>
-												<li><span class="text-black fs-6">Postal Code :- </span><%= user && user.postalcode ? user.postalcode : "21342425"%></li>
-												<li><span class="text-black fs-6">Address :- </span><%= user && user.address ? user.address : "C/D-541 Sitaram Society"%></li>
+												<li><p class="text-black fs-6 m-0 fw-bold">City :- <span class="<%= user.status == 'Active' ? 'text-success fw-semibold' : 'text-dark-emphasis' %> "><%= user && user.city ? user.city : "City Add.."%></span></p></li>
+												<li><p class="text-black fs-6 m-0 fw-bold">State :- <span class="<%= user.status == 'Active' ? 'text-success fw-semibold' : 'text-dark-emphasis' %> "><%= user && user.state ? user.state : "State Add.."%></span></p></li>
+												<li><p class="text-black fs-6 m-0 fw-bold">Country :- <span class="<%= user.status == 'Active' ? 'text-success fw-semibold' : 'text-dark-emphasis' %> "><%= user && user.country ? user.country : "Contry Add.."%></span></p></li>
+												<li><p class="text-black fs-6 m-0 fw-bold">Postal Code :- <span class="<%= user.status == 'Active' ? 'text-success fw-semibold' : 'text-dark-emphasis' %> "><%= user && user.postalcode ? user.postalcode : "Postalcode Add.."%></span></p></li>
+												<li><p class="text-black fs-6 m-0 fw-bold">Address :- <span class="<%= user.status == 'Active' ? 'text-success fw-semibold' : 'text-dark-emphasis' %> "><%= user && user.address ? user.address : "Address Add.."%></span></p></li>
 											</ul>
 										</div>
 									</div>
 									<% if (blogUser.length !== 0) { %>
 										<div class="container py-4">
 										  <div class="row justify-content-center">
-											<div class="col-lg-10 d-flex flex-wrap border border-2 py-4 rounded-2 border-primary " style="gap: 34px 0px;">
+											<div class="col-md-10 d-flex flex-wrap border border-2 py-4 rounded-2 border-primary " style="gap: 34px 0px;">
 											  <% const sortBlogs = blogUser.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) %>
 												<% sortBlogs.map((blog) => { %>
-												  <div class="col-6 w-100 d-flex ">
+												  <div class="col-md-6 w-100 d-flex ">
 													<div class="card h-100 shadow border border-2 border-secondary-subtle rounded-2 p-3 w-100">
 													  <div class="d-flex align-items-center justify-content-between mb-3">
 														<div class="d-flex align-items-center justify-content-between flex-column flex-lg-row w-100">
@@ -300,22 +286,22 @@
 														  <span class="card-title text-primary ps-2 time-ago" data-time="<%= blog.createdAt %>">
 															  <%= new Date(blog.createdAt).toLocaleString('en-US') %>
 														  </span>
-														  <div class="dropdown">
-															<span class="dropdown-toggle" data-bs-toggle="dropdown" style="cursor: pointer;">
-															  <i class="fa-solid fa-ellipsis-vertical"></i>
-															</span>
-															<ul class="dropdown-menu">
-															  <li><a class="dropdown-item " href="/blogedit/<%=blog._id %>" ><span class="text-primary"><i class="fa-solid fa-pen-to-square"></i></span>Edit Blog</a></li>
-															  <li><a class="dropdown-item " href="/blogs/delete/<%=blog._id %>" ><span class="text-danger"><i class="fa-solid fa-trash"></i></span>Delete Blog</a></li>
-															  <li><a class="dropdown-item " href="#"><span class="text-"><i class="fa-solid fa-eye"></i></span>View Blog</a></li>
-															</ul>
-														  </div>
+														</div>
+														<div class="dropdown">
+														  <span class="dropdown-toggle ps-3" data-bs-toggle="dropdown" style="cursor: pointer;">
+															<i class="fa-solid fa-ellipsis-vertical"></i>
+														  </span>
+														  <ul class="dropdown-menu m-0 p-0" style="border-radius: 0.375rem;">
+															<li style="border-radius: 0.375rem;"><a class="dropdown-item " href="/blogedit/<%=blog._id %>" ><span class="text-primary"><i class="fa-solid fa-pen-to-square"></i></span>Edit Blog</a></li>
+															<li><a class="dropdown-item " href="/blogs/delete/<%=blog._id %>" ><span class="text-danger"><i class="fa-solid fa-trash"></i></span>Delete Blog</a></li>
+															<li style="border-radius: 0.375rem;"><a class="dropdown-item " href="#"><span class="text-"><i class="fa-solid fa-eye"></i></span>View Blog</a></li>
+														  </ul>
 														</div>
 													  </div>
 													  <div>
 														<h6 class="fw-bold mb-2 text-center text-lg-start"><%= blog.title %></h6>
 														<div class="blog-img-title-des flex-grow-1 d-flex flex-column">
-															<div class="mb-2 blog-img d-flex align-items-center justify-content-center">
+															<div class="mb-2 blog-img d-fle align-items-center justify-content-center">
 																<div class="border border-2 p-4 rounded-2">
 																	<img src="<%= blog.blogImag ? blog.blogImag : './ImgUpload/Blog/blog.jpg' %>" class="profile-picture img-fluid" alt="Profile Picture" style="width: 500px; aspect-ratio: 1/1; object-fit: cover; border-radius: 8px;">
 																</div>
