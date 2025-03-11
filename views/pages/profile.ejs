@@ -292,9 +292,15 @@
 															<i class="fa-solid fa-ellipsis-vertical"></i>
 														  </span>
 														  <ul class="dropdown-menu m-0 p-0" style="border-radius: 0.375rem;">
-															<li style="border-radius: 0.375rem;"><a class="dropdown-item " href="/blogedit/<%=blog._id %>" ><span class="text-primary"><i class="fa-solid fa-pen-to-square"></i></span>Edit Blog</a></li>
-															<li><a class="dropdown-item " href="/blogs/delete/<%=blog._id %>" ><span class="text-danger"><i class="fa-solid fa-trash"></i></span>Delete Blog</a></li>
-															<li style="border-radius: 0.375rem;"><a class="dropdown-item " href="#"><span class="text-"><i class="fa-solid fa-eye"></i></span>View Blog</a></li>
+															<% if (user.status === 'Active'){%>
+																<li style="border-radius: 0.375rem;"><a class="dropdown-item " href="/blogedit/<%=blog._id %>" ><span class="text-primary"><i class="fa-solid fa-pen-to-square"></i></span>Edit Blog</a></li>
+																<li><a class="dropdown-item " href="/blogs/delete/<%=blog._id %>" ><span class="text-danger"><i class="fa-solid fa-trash"></i></span>Delete Blog</a></li>
+																<li style="border-radius: 0.375rem;"><a class="dropdown-item " href="#"><span class="text-"><i class="fa-solid fa-eye"></i></span>View Blog</a></li>
+															<%}else{%>
+																<li style="border-radius: 0.375rem;" data-bs-toggle="tooltip" data-bs-placement="top" title="Go To Edit Profile In status Active"><a class="dropdown-item " href="#javascript.void(0)" ><span class="text-primary"><i class="fa-solid fa-pen-to-square"></i></span>Edit Blog</a></li>
+																<li><a class="dropdown-item " href="#javascript.void(0)"  data-bs-toggle="tooltip" data-bs-placement="top" title="Go To Edit Profile In status Active"><span class="text-danger"><i class="fa-solid fa-trash"></i></span>Delete Blog</a></li>
+																<li style="border-radius: 0.375rem;" data-bs-toggle="tooltip" data-bs-placement="top" title="Go To Edit Profile In status Active"><a class="dropdown-item " href="#javascript.void(0)"><span class="text-"><i class="fa-solid fa-eye"></i></span>View Blog</a></li>
+															<%}%>
 														  </ul>
 														</div>
 													  </div>
