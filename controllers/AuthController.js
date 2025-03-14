@@ -2,7 +2,10 @@ const AdminModel = require("../models/AdminSchema");
 const bcrypt = require("bcrypt");
 
 const authsignin = (req, res) => (res.render("pages/authsignin"));
-const authLogin = async (req, res) => {res.redirect("/")};
+const authLogin = async (req, res) => {
+    req.flash("login", "login sucess");
+    res.redirect("/")
+};
 const SignOut = (req, res, next) => req.logout((err) => (err) ? next(err) : res.redirect('/authsignin'));
 const authsignup = (req, res) => (res.render("pages/authsignup"))
 

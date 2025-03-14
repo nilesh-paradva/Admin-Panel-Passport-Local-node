@@ -1,5 +1,10 @@
 // common pages Route
-const HomeController = (req, res) =>{res.render("index")};
+const HomeController = (req, res) =>{
+    const loginsucess = req.flash("login");
+    console.log("loginsucess", loginsucess);
+    
+    res.render("index")
+};
 const bc_buttonController = (req, res) => (res.render("pages/bcbutton"));
 const bc_collapse = (req, res) => (res.render("pages/bccollapse"));
 const bc_progress = (req, res) => (res.render("pages/bcprogress"));

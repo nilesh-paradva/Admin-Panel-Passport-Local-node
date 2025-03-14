@@ -4,6 +4,7 @@ const passport = require("passport");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const db = require("./db/db.js");
+const flash = require("connect-flash")
 
 const SimpleHomeRoute = require("./routes/HomePageRoute.js");
 const AuthRoutes = require("./routes/AuthRoute.js");
@@ -27,6 +28,7 @@ app.use(passport.session());
 
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use(flash());
 
 app.set('pages', path.join(__dirname, 'pages'));
 app.use(express.static(path.join(__dirname, 'views/pages')));
