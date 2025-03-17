@@ -1,5 +1,6 @@
 const AdminModel = require("../models/AdminSchema");
 const bcrypt = require("bcrypt");
+const Swal = require('sweetalert2')
 
 const authsignin = (req, res) => (res.render("pages/authsignin"));
 const authLogin = async (req, res) => {

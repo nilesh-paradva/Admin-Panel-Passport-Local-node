@@ -12,7 +12,7 @@ const ProfileRoute = require("./routes/ProfileRoute");
 const BlogRoute = require("./routes/BlogRoute.js");
 
 const app = express();
-const port = 3002;
+const port = 8005;
 
 app.set('view engine', 'ejs');
 

@@ -2,7 +2,17 @@
 <script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
 <script src="../js/pcoded.min.js"></script>
 <script src="https://unpkg.com/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
+    // if (loginsucess) {
+        // setTimeout(() => {
+        //     const fleshBox = document.querySelector(".flesh-box");
+        //     if (fleshBox) {
+        //         fleshBox.style.display = "none";
+        //     }
+        // }, 2000);
+    // }
+
     function timeAgo(date) {
         const now = new Date();
         const seconds = Math.floor((now - new Date(date)) / 1000);
@@ -24,7 +34,7 @@
 
     //ImgUpload
     const ImgUpload = document.getElementById('imageUpload')
-    if(ImgUpload){
+    if (ImgUpload) {
         ImgUpload.addEventListener('change', function (event) {
             const file = event.target.files[0];
             if (file) {
