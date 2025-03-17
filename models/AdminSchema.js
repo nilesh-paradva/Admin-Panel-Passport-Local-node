@@ -21,7 +21,8 @@ const AdminSchema = new mongoose.Schema({
     linkedin:{type: String, default : null},
     facebook:{type: String, default : null},
     instagram:{type: String, default : null},
-    membership_level:{type : String, default : null}
+    membership_level:{type : String, default : null},
+    otp:{type : String, default : null},
 
 },{timestamps:true});
 

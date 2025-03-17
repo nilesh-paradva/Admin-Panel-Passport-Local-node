@@ -8,7 +8,11 @@ const AuthMiddleware = require("../middleware/AuthMiddleware");
 AuthRoutes.get("/authsignin",AuthMiddleware.uthPageSecure, AuthController.authsignin);
 AuthRoutes.get("/authsignup",AuthMiddleware.uthPageSecure, AuthController.authsignup);
 AuthRoutes.get("/SignOut", AuthController.SignOut);
+AuthRoutes.get("/forgotPassword", AuthController.forgotPassword)
 AuthRoutes.post("/register", AuthController.register);
 AuthRoutes.post("/login", passport.authenticate('local', { failureRedirect: '/login' }), AuthController.authLogin);
+AuthRoutes.post("/otp-generate", AuthController.OtpGenerate);
+AuthRoutes.post("/verify-otp", AuthController.verifyOtp);
+AuthRoutes.post("/reset-password", AuthController.ResetPassword)
 
 module.exports = AuthRoutes
