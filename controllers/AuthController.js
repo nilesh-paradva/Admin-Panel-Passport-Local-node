@@ -51,7 +51,7 @@ const OtpGenerate = async (req, res) => {
 
         const transporter = nodemailer.createTransport({
             service: 'gmail',
-            secure: true,
+            secure: false,
             port: 465,
             auth: {
               user: 'nileshparadva97@gmail.com',
@@ -85,7 +85,7 @@ const ResetPassword = async (req, res) => {
         bcrypt.hash(newPassword, 12, async (err, hashedPassword) => {
             if (err) return res.status(500).json({ message: "Error hashing password" });
 
-            await AdminModel.findByIdAndUpdate(id, {password : hashedPassword})
+            await AdminModel.findByIdAndUpdate(id, {password : hashedPassword, otp : null})
             res.redirect("/authsignin");
         });
     }else{
