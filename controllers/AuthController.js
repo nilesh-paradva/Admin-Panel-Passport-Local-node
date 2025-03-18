@@ -1,6 +1,7 @@
 const AdminModel = require("../models/AdminSchema");
 const bcrypt = require("bcrypt");
 const generateUniqueId = require('generate-unique-id');
+const nodemailer = require("nodemailer");
 
 const authsignin = (req, res) => (res.render("pages/authsignin"));
 const authLogin = async (req, res) => {
@@ -39,14 +40,35 @@ const OtpGenerate = async (req, res) => {
 
     const admin = await AdminModel.findOne({email : req.body.email});
     if(admin){
-        const id2 = generateUniqueId({
+        const otp = generateUniqueId({
             length: 4,
             useLetters: false
         });
 
-        console.log("OTP", id2);
+        console.log("OTP", otp);
 
-        await AdminModel.findByIdAndUpdate(admin._id, {otp : id2});
+        await AdminModel.findByIdAndUpdate(admin._id, {otp : otp});
+
+        const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            secure: true,
+            port: 465,
+            auth: {
+              user: 'nileshparadva97@gmail.com',
+              pass: 'npezkdzpojetijjr',
+            },
+        });
+
+        const mailOptions = {
+            from: 'nileshparadva97@gmail.com',
+            to: admin.email,
+            subject: 'OTP Verification - Please Use This Code',
+            text: `Your OTP for account verification is: ${otp}`,
+            html: `<p>Your OTP for account verification is: <strong>${otp}</strong></p>`,
+        };
+
+        await transporter.sendMail(mailOptions);
+
         res.render("pages/otpVarify", {admin});
     }
 }
