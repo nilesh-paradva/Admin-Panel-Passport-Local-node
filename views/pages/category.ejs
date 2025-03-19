@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("../compo/head") -%>
+<body>
+
+     <!-- [ navigation menu ] start -->
+	<%- include("../compo/sidebar") -%>
+	<!-- [ navigation menu ] end -->
+
+	<!-- [ Header ] start -->
+	<%- include("../compo/header") -%>
+	<!-- [ Header ] end -->
+
+    <div class="pcoded-main-container">
+		<div class="pcoded-wrapper">
+			<div class="pcoded-content">
+				<div class="pcoded-inner-content">
+					<div class="main-body">
+						<div class="page-wrapper">
+							<div class="page-header">
+								<div class="page-block">
+									<div class="row align-items-center justify-content-center">
+										<div class="col-md-8">
+                                            <form action="/categoryAdd" method="post">
+                                                <div class="form-group mb-3">
+                                                    <label for="category" class="text-black">Add Category :-</label>
+                                                    <input type="text" class="form-control" id="category" name="category" placeholder="Enter Your Category">
+                                                </div>
+                                                <button class="btn btn-primary">Save Category</button>
+                                            </form>
+                                        </div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+    <%- include("../compo/footer") -%>    
+</body>
+</html>

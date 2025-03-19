@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("../compo/head") -%>
+<body>
+
+     <!-- [ navigation menu ] start -->
+	<%- include("../compo/sidebar") -%>
+	<!-- [ navigation menu ] end -->
+
+	<!-- [ Header ] start -->
+	<%- include("../compo/header") -%>
+	<!-- [ Header ] end -->
+
+    <div class="pcoded-main-container">
+		<div class="pcoded-wrapper">
+			<div class="pcoded-content">
+				<div class="pcoded-inner-content">
+					<div class="main-body">
+						<div class="page-wrapper">
+							<div class="page-header">
+								<div class="page-block">
+									<div class="row align-items-center justify-content-center">
+										<div class="col-md-8">
+                                            <table class="table table-hover table-bordered align-middle">
+                                                <thead>
+                                                  <tr class="text-center">
+                                                    <th>#</th>
+                                                    <th>Category Name</th>
+                                                    <th>Action</th>
+                                                  </tr>
+                                                </thead>
+                                                <tbody>
+                                                <% CategoryList.map((Categorys, index) => { %>
+                                                    <tr class="text-center">
+                                                        <td class="align-middle"><%= index+1 %></td>
+                                                        <td class="align-middle"><%= Categorys.category %></td>
+                                                        <td class="align-middle">
+                                                            <a href="/DeleteCategory/<%=Categorys._id%>" class="btn btn-danger m-0">Delete</a>
+                                                        </td>
+                                                    </tr>
+                                                <%})%>
+                                                </tbody>
+                                              </table>
+                                        </div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+    <%- include("../compo/footer") -%>    
+</body>
+</html>
