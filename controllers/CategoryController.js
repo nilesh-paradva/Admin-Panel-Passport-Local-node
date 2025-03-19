@@ -5,14 +5,14 @@ const CatagoryPageGet = (req, res) => {
 }
 
 const AddCategory = async (req, res) => {
-    const { category } = req.body;
-    const existingCategory = await CategoryModel.findOne({ category });
-    if (existingCategory) return res.status(400).json({ message: "Category already exists!" });
-    const SaveCategory = await new CategoryModel({
-        category
-    })
-    await SaveCategory.save();
-    res.redirect("/addCategory");
+    try{
+        const { category } = req.body;
+        await CategoryModel.create({ category });
+        res.redirect("/addCategory");
+    }catch(err){
+        console.log("Category already exists!");
+        res.redirect("/addCategory");
+    }
 }
 
 const ViewCategoryPage = async (req, res) => {
@@ -25,4 +25,14 @@ const DeleteCategory = async (req, res) => {
     res.redirect("/listCategory");
 }
 
-module.exports = { CatagoryPageGet, AddCategory, ViewCategoryPage, DeleteCategory };
+const EditCategory =  async(req,res) => {
+    const CategoryEdit = await CategoryModel.findOne({_id: req.params.id})
+    res.render("pages/EditCategory", {CategoryEdit});
+}
+
+const UpdateCategory = async(req,res)=> {
+    await CategoryModel.findByIdAndUpdate(req.params.id, req.body);
+    res.redirect("/listCategory");
+}
+
+module.exports = { CatagoryPageGet, AddCategory, ViewCategoryPage, DeleteCategory, EditCategory, UpdateCategory};
