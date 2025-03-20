@@ -11,6 +11,7 @@ const AuthRoutes = require("./routes/AuthRoute.js");
 const ProfileRoute = require("./routes/ProfileRoute");
 const BlogRoute = require("./routes/BlogRoute.js");
 const categoryRoute = require("./routes/CategoryRoute.js");
+const SubCategoryRoute = require("./routes/SubCategoryRoute.js");
 
 const app = express();
 const port = 8005;
@@ -36,7 +37,7 @@ app.use(express.static(path.join(__dirname, 'views/pages')));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/ImgUpload', express.static(path.join(__dirname, 'ImgUpload')));
 
-app.use("/", AuthRoutes, SimpleHomeRoute, ProfileRoute, BlogRoute, categoryRoute);
+app.use("/", AuthRoutes, SimpleHomeRoute, ProfileRoute, BlogRoute, categoryRoute, SubCategoryRoute);
 
 app.listen(port, (err) => {
     if (!err) console.log(`Server started at http://localhost:${port}`);
