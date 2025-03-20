@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <%- include("../compo/head") -%>
+<div class="modal fade" id="loginSuccessModal" tabindex="-1" aria-labelledby="loginSuccessModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+	  <div class="modal-content bg-gradient-primary text-white d-flex flex-row">
+		<div class="modal-body d-flex justify-content-center align-items-center fs-6 text-danger">
+			<%= categoryerror %><span class="text-danger border border-2 border-danger px-2 rounded-pill ms-1">&#10003;</span>
+		</div>
+		<div class="modal-header border-0">
+			<button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
+		</div>
+	  </div>
+	</div>
+  </div>
 <body>
 
      <!-- [ navigation menu ] start -->
@@ -40,6 +52,15 @@
 	</div>
 
 
-    <%- include("../compo/footer") -%>    
+    <%- include("../compo/footer") -%> 
+	<script> 
+		const categoryerror = '<%= categoryerror %>';
+		if (categoryerror.length > 0) {
+		  window.addEventListener('DOMContentLoaded', () => {
+			const modal = new bootstrap.Modal(document.getElementById('loginSuccessModal'));
+			modal.show();
+		  });
+		}
+	</script>   
 </body>
 </html>

@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <%- include("compo/head") -%>
-<body class="">
-	<!-- alert massage -->
-	<% if (loginsucess.length > 0) { %>
-		<div class="flesh-box position-absolute top-0 start-0 w-100 p-5 d-flex justify-content-center" style="z-index: 1050; height: 100%; background-color: rgba(0, 0, 0, 0.4);">
-			<div class="alert-box w-50 border-top border-2 border-primary rounded-3 bg-white d-flex align-items-center justify-content-center m-0" style="max-height: 10%; animation: zoomInFromTop 1s ease-out;">
-				<p class="text-center fw-bold fs-3 m-0"> <%= loginsucess %> <span class="text-success border border-2 border-primary px-2 rounded-pill">&#10003;</span></p>
-			</div>
+
+  <div class="modal fade" id="loginSuccessModal" tabindex="-1" aria-labelledby="loginSuccessModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+	  <div class="modal-content bg-gradient-primary text-white d-flex flex-row">
+		<div class="modal-body d-flex justify-content-center align-items-center fs-6 text-success">
+			<%= loginsucess %><span class="text-success border border-2 border-success px-2 rounded-pill ms-1">&#10003;</span>
 		</div>
-	<% } %>
-	<!-- alert massage -->
-	 
+		<div class="modal-header border-0">
+			<button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
+		</div>
+	  </div>
+	</div>
+  </div>
+  
+<body class="">
 	<!-- [ Pre-loader ] start -->
 	<div class="loader-bg">
 		<div class="loader-track">
@@ -620,12 +624,14 @@
 	<!-- Required Js -->
 	<%- include("compo/footer") -%>
 	<script>
-		setTimeout(() => {
-            const fleshBox = document.querySelector(".flesh-box");
-			fleshBox.classList.remove("d-flex");
-            fleshBox.style.display = "none";
-        }, 2000);
-	</script>
+		const loginsucess = '<%= loginsucess %>';  
+		if (loginsucess && loginsucess.length > 0) {
+		  window.addEventListener('DOMContentLoaded', () => {
+			const modal = new bootstrap.Modal(document.getElementById('loginSuccessModal'));
+			modal.show();
+		  });
+		}
+	  </script>
 </body>
 
 </html>

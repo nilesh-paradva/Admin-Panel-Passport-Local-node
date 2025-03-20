@@ -5,7 +5,7 @@ const nodemailer = require("nodemailer");
 
 const authsignin = (req, res) => (res.render("pages/authsignin"));
 const authLogin = async (req, res) => {
-    req.flash("login", "login sucess");
+    req.flash("login", `Login successful ! Welcome, ${req.user.username}`);
     res.redirect("/")
 };
 const SignOut = (req, res, next) => req.logout((err) => (err) ? next(err) : res.redirect('/authsignin'));

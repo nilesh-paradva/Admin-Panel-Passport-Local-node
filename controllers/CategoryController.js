@@ -1,7 +1,11 @@
 const CategoryModel = require("../models/CategorySchema");
+const flash = require("connect-flash");
 
 const CatagoryPageGet = (req, res) => {
-    res.render("pages/category");
+    const categoryerror = req.flash("CateGoryerror");
+    console.log("categoryerror", categoryerror);
+    
+    res.render("pages/category", { categoryerror });
 }
 
 const AddCategory = async (req, res) => {
@@ -10,7 +14,7 @@ const AddCategory = async (req, res) => {
         await CategoryModel.create({ category });
         res.redirect("/addCategory");
     }catch(err){
-        console.log("Category already exists!");
+        req.flash("CateGoryerror", "Category already exists!");
         res.redirect("/addCategory");
     }
 }
