@@ -10,8 +10,8 @@ const CatagoryPageGet = (req, res) => {
 
 const AddCategory = async (req, res) => {
     try{
-        const { category } = req.body;
-        await CategoryModel.create({ category });
+        const category  = req.body;
+        await CategoryModel.create(category);
         res.redirect("/addCategory");
     }catch(err){
         req.flash("CateGoryerror", "Category already exists!");

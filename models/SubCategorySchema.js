@@ -1,6 +1,6 @@
-const moongose = require("mongoose");
+const mongoose = require("mongoose");
 
-const SubCategorySchema = new moongose.Schema({
+const SubCategorySchema = new mongoose.Schema({
     subcategory : {
         type: String,
         required: true,
@@ -8,12 +8,12 @@ const SubCategorySchema = new moongose.Schema({
         trim: true,
     },
     categoryId :{
-        type: moongose.Schema.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: "categorys",
         required: true
     }
 })
 
-const SubCatagoryModel = moongose.model("subcategorys", SubCategorySchema);
+const SubCatagoryModel = mongoose.model("subcategorys", SubCategorySchema);
 
 module.exports = SubCatagoryModel ;

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<%- include("../compo/head") -%>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<body>
+
+    <!-- [ Navigation Menu ] start -->
+    <%- include("../compo/sidebar") -%>
+    <!-- [ Navigation Menu ] end -->
+
+    <!-- [ Header ] start -->
+    <%- include("../compo/header") -%>
+    <!-- [ Header ] end -->
+
+    <div class="pcoded-main-container">
+        <div class="pcoded-wrapper">
+            <div class="pcoded-content">
+                <div class="pcoded-inner-content">
+                    <div class="main-body">
+                        <div class="page-wrapper">
+                            <div class="page-header">
+                                <div class="page-block">
+                                    <div class="row align-items-center justify-content-center">
+                                        <div class="col-md-8">
+                                            <h3 class="text-center">All Category Click Sub Category</h3>
+                                            
+                                            <!-- Category List -->
+                                            <ul class="list-unstyled">
+                                                <% categories.map((category) => { %>
+                                                    <li >
+                                                        <a href="#" class="category-link" data-bs-toggle="modal" data-bs-target="#exampleModal" aria-label="Click to view <%=category.category%>">
+                                                            <%= category.category %>
+                                                        </a>
+                                                    </li>
+                                                <% }) %>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- [ Footer ] start -->
+    <%- include("../compo/footer") -%>
+    <!-- [ Footer ] end -->
+
+</body>
+
+</html>
