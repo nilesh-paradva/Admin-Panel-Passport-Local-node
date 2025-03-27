@@ -22,8 +22,7 @@ const SubCategoryPost = async(req, res) =>{
 const viewSubCategory = async (req, res) => {
     try {
         const subcategories = await SubCatagoryModel.find({}).populate('categoryId', 'category').exec();
-        const categories = await CategoryModel.find({})
-        res.render("pages/ViewSubCategory", { subcategories, categories});
+        res.render("pages/ViewSubCategory", { subcategories });
     } catch (err) {
         console.log("Error fetching subcategories: ", err);
     }
